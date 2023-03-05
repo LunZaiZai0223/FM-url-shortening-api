@@ -1,0 +1,45 @@
+@use '../../styles/variables.scss';
+@use '../../styles/colors.scss';
+
+.header {
+  max-width: variables.$max-width;
+  margin: 0 auto;
+  margin-top: 40px;
+  position: relative;
+
+  .header-content {
+    width: 40%;
+    padding-top: 48px;
+
+    h2 {
+      font-size: 60px;
+      font-weight: 700;
+      color: colors.$neutral-very-dark-blue;
+      letter-spacing: -3px;
+    }
+
+    p {
+      color: colors.$neutral-grayish-violet;
+    }
+
+    .btn-wrapper {
+      margin-top: 36px;
+    }
+
+    .btn-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+    }
+  }
+
+  .header-img {
+    position: absolute;
+    top: 0;
+    right: -18%;
+  }
+
+  .header-btn {
+    padding: 10px 36px;
+  }
+}

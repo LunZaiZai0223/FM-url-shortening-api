@@ -1,0 +1,13 @@
+@use '../../styles/colors.scss';
+
+.btn {
+  cursor: pointer;
+  border: none;
+  background-color: colors.$primary-cyan;
+  border-radius: 28px;
+  padding: 10px 24px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}

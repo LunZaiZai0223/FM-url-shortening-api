@@ -1,0 +1,46 @@
+@use '../../styles/colors.scss';
+@use '../../styles/variables.scss';
+
+.nav {
+  display: flex;
+  padding: 2.5rem 0;
+  max-width: variables.$max-width;
+  margin: 0 auto;
+  align-items: center;
+
+  .logo {
+    padding-top: 4px;
+    width: 15%;
+  }
+}
+
+.nav-list {
+  width: 85%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-wrapper {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    gap: 2rem;
+    color: colors.$neutral-grayish-violet;
+    font-weight: 500;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: inherit;
+
+      &:hover {
+        color: Black;
+      }
+    }
+  }
+}
+
+.btn-text {
+  color: White;
+  font-weight: 600;
+}

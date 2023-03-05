@@ -1,0 +1,70 @@
+@use '../../styles/variables.scss';
+@use '../../styles/colors.scss';
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 200px;
+  max-width: variables.$max-width;
+  padding: 54px 36px;
+  background-image: url('../../assets/images/bg-shorten-desktop.svg'),
+    linear-gradient(colors.$primary-dark-violet, colors.$primary-dark-violet);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 8px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: colors.$neutral-light-violet;
+    left: -100%;
+    right: -100%;
+    height: 50%;
+    z-index: -1;
+    top: 50%;
+  }
+
+  form {
+    text-align: center;
+    width: 100%;
+
+    .form-control {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      justify-content: center;
+
+      input {
+        width: 85%;
+        padding: 12px 16px;
+        border: unset;
+        border-radius: 5px;
+        font-family: inherit;
+        font-size: 18px;
+
+        &::placeholder {
+          font-family: inherit;
+          color: colors.$neutral-grayish-violet;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .btn {
+        width: 15%;
+        color: White;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: colors.$primary-light-cyan;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
