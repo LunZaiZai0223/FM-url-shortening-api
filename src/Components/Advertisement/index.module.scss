@@ -1,0 +1,7 @@
+@use '../../styles/variables.scss';
+@use '../../styles/colors.scss';
+
+.advertisement-container {
+  padding: 18px 158px;
+  background-color: colors.$neutral-light-violet;
+}

@@ -1,0 +1,17 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles/colors.scss';
+
+.wrapper {
+  h2 {
+    font-size: 32px;
+    text-align: center;
+    color: colors.$neutral-very-dark-blue;
+  }
+
+  p {
+    width: 50%;
+    text-align: center;
+    margin: 8px auto 0;
+    color: colors.$neutral-grayish-violet;
+  }
+}
