@@ -1,0 +1,58 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles/colors.scss';
+
+.card-list {
+  display: flex;
+  gap: 26px;
+  list-style-type: none;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    content: '';
+    width: 100%;
+    height: 8px;
+    background-color: colors.$primary-cyan;
+    z-index: 1;
+  }
+
+  .card-item {
+    &:nth-of-type(2) {
+      transform: translateY(18%);
+    }
+
+    &:nth-of-type(3) {
+      transform: translateY(36%);
+    }
+
+    z-index: 2;
+    padding: 64px 24px 32px;
+    position: relative;
+    background-color: White;
+    border-radius: 5px;
+
+    .card-icon-wrapper {
+      background-color: colors.$primary-dark-violet;
+      width: 78px;
+      height: 78px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      position: absolute;
+      top: -18%;
+    }
+
+    h4 {
+      margin-top: 8px;
+      margin-bottom: 16px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    p {
+      color: colors.$neutral-grayish-violet;
+    }
+  }
+}

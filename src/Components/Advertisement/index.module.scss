@@ -2,6 +2,14 @@
 @use '../../styles/colors.scss';
 
 .advertisement-container {
-  padding: 18px 158px;
   background-color: colors.$neutral-light-violet;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  justify-content: center;
+
+  .advertisement-wrapper {
+    max-width: 1120px;
+    margin: 18px 0 158px;
+  }
 }

@@ -11,12 +11,14 @@ interface Props {
 const Form = (props: Props) => {
   return (
     <section className={styles.container}>
-      <form>
-        <div className={`${styles['form-control']}`}>
-          <input placeholder="Shorten a link here..." />
-          <Button classes={styles.btn}>Shorten It!</Button>
-        </div>
-      </form>
+      <div className={styles.wrapper}>
+        <form>
+          <div className={`${styles['form-control']}`}>
+            <input placeholder="Shorten a link here..." />
+            <Button classes={styles.btn}>Shorten It!</Button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 };

@@ -8,8 +8,10 @@ import styles from './index.module.scss';
 const Advertisement = () => {
   return (
     <section className={`${styles['advertisement-container']}`}>
-      <Title />
-      <Card />
+      <div className={`${styles['advertisement-wrapper']}`}>
+        <Title />
+        <Card />
+      </div>
     </section>
   );
 };

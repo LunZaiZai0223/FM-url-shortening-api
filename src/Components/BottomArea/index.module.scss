@@ -1,0 +1,31 @@
+@use '../../styles/variables.scss';
+@use '../../styles/colors.scss';
+
+.bottom-container {
+  background-image: url('../../assets/images/bg-boost-desktop.svg'),
+    linear-gradient(colors.$primary-dark-violet, colors.$primary-dark-violet);
+  text-align: center;
+  padding: 40px 0;
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .btn {
+    margin-top: 16px;
+    padding: 10px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+
+    &:hover {
+      opacity: 1;
+      background-color: colors.$primary-light-cyan;
+    }
+  }
+}
