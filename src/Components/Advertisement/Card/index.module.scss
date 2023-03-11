@@ -1,5 +1,6 @@
 @use '../../../styles/variables.scss';
 @use '../../../styles/colors.scss';
+@use '../../../styles/breakpoint.scss';
 
 .card-list {
   display: flex;
@@ -53,6 +54,39 @@
 
     p {
       color: colors.$neutral-grayish-violet;
+    }
+  }
+}
+
+@media (max-width: breakpoint.$mobile) {
+  .card-list {
+    flex-direction: column;
+    gap: 100px;
+
+    &::after {
+      height: 100%;
+      top: unset;
+      width: 10px;
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+    .card-item {
+      &:nth-of-type(2) {
+        transform: unset;
+      }
+
+      &:nth-of-type(3) {
+        transform: unset;
+      }
+
+      padding: 64px 34px 44px;
+      text-align: center;
+
+      .card-icon-wrapper {
+        right: 50%;
+        transform: translateX(50%);
+      }
     }
   }
 }

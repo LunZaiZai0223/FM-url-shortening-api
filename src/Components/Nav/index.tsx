@@ -1,3 +1,4 @@
+// svgs
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 
 // style classes
@@ -5,6 +6,7 @@ import styles from './index.module.scss';
 
 // components
 import Button from '../Button';
+import MobileNav from './MobileNav';
 
 const Nav = () => {
   return (
@@ -37,6 +39,10 @@ const Nav = () => {
           </li>
         </ul>
       </div>
+      <div className={styles.hamburger}>
+        <span></span>
+      </div>
+      <MobileNav />
     </nav>
   );
 };

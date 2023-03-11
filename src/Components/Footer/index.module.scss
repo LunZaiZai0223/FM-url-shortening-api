@@ -1,5 +1,6 @@
 @use '../../styles/variables.scss';
 @use '../../styles/colors.scss';
+@use '../../styles/breakpoint.scss';
 
 .footer-container {
   padding: 36px 0 48px;
@@ -75,6 +76,40 @@
             path {
               fill: colors.$primary-cyan;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: breakpoint.$mobile) {
+  .footer-container {
+    .wrapper {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+
+      h1 {
+        a {
+          svg {
+            display: block;
+          }
+        }
+      }
+
+      .infos {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+
+        .info {
+          text-align: center;
+
+          h5 {
+            font-size: 18px;
           }
         }
       }

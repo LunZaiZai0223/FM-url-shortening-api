@@ -1,5 +1,6 @@
 @use '../../styles/variables.scss';
 @use '../../styles/colors.scss';
+@use '../../styles/breakpoint.scss';
 
 .link-container {
   padding: 0 24px;
@@ -37,6 +38,7 @@
     .shortened-link {
       color: colors.$primary-cyan;
       word-break: break-word;
+      margin-top: 8px;
     }
 
     .btn {
@@ -44,6 +46,36 @@
       padding: 10px 28px;
       color: white;
       font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: breakpoint.$mobile) {
+  .link-item {
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      border-bottom: 1px solid colors.$neutral-gray;
+      top: 32%;
+      opacity: 0.3;
+    }
+
+    position: relative;
+    flex-direction: column;
+
+    .original-link,
+    .shortened-link,
+    .btn {
+      width: 100% !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
+    }
+
+    .btn {
+      font-size: 18px;
     }
   }
 }

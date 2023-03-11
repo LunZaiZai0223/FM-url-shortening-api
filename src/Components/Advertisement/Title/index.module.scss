@@ -1,5 +1,6 @@
 @use '../../../styles/variables.scss';
 @use '../../../styles/colors.scss';
+@use '../../../styles/breakpoint.scss';
 
 .wrapper {
   margin: 76px 0;
@@ -14,5 +15,13 @@
     text-align: center;
     margin: 8px auto 0;
     color: colors.$neutral-grayish-violet;
+  }
+}
+
+@media (max-width: breakpoint.$mobile) {
+  .wrapper {
+    p {
+      width: 80%;
+    }
   }
 }

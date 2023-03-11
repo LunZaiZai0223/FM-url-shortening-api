@@ -1,5 +1,6 @@
 @use '../../styles/variables.scss';
 @use '../../styles/colors.scss';
+@use '../../styles/breakpoint.scss';
 
 .header {
   max-width: variables.$max-width;
@@ -11,6 +12,8 @@
   .header-content {
     width: 40%;
     padding-top: 48px;
+    position: relative;
+    z-index: 2;
 
     h2 {
       font-size: 60px;
@@ -40,7 +43,54 @@
     right: -18%;
   }
 
+  .header-img-mobile {
+    display: none;
+  }
+
   .header-btn {
     padding: 10px 36px;
+  }
+}
+
+@media (max-width: breakpoint.$mobile) {
+  .header {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    .header-content {
+      width: 100%;
+      text-align: center;
+
+      h2 {
+        line-height: 1.2;
+        margin-bottom: 24px;
+      }
+    }
+
+    .header-img {
+      position: relative;
+      display: none;
+    }
+
+    .header-img-mobile {
+      display: flex;
+      justify-content: flex-end;
+      width: 90vw;
+
+      img {
+        display: block;
+        position: relative;
+        right: -10%;
+        width: 100%;
+      }
+    }
+
+    .header-btn {
+      padding: 14px 42px;
+      .btn-text {
+        font-size: 22px;
+      }
+    }
   }
 }

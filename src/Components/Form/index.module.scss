@@ -1,5 +1,6 @@
 @use '../../styles/variables.scss';
 @use '../../styles/colors.scss';
+@use '../../styles/breakpoint.scss';
 
 .container {
   position: relative;
@@ -69,6 +70,29 @@
           opacity: 1;
         }
       }
+    }
+  }
+}
+
+@media (max-width: breakpoint.$mobile) {
+  .container {
+    margin-top: 80px;
+
+    .wrapper {
+      background-image: url('../../assets/images/bg-shorten-mobile.svg'),
+        linear-gradient(colors.$primary-dark-violet, colors.$primary-dark-violet);
+    }
+  }
+
+  .form-control {
+    flex-direction: column;
+
+    input {
+      width: 100% !important;
+    }
+
+    .btn {
+      width: 100% !important;
     }
   }
 }
