@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 // svgs
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 
@@ -6,13 +7,17 @@ import styles from './index.module.scss';
 
 // components
 import Button from '../Button';
+import Hamburger from './Hamburger';
 import MobileNav from './MobileNav';
 
 const Nav = () => {
+  const hamburgerRef = useRef<HTMLDivElement>(null);
+  const [mobileNavVisible, setMobileNavVisible] = useState<boolean>(false);
+
   return (
     <nav className={`${styles.nav}`}>
       <h1 className={styles.logo}>
-        <a>
+        <a href="#">
           <Logo />
         </a>
       </h1>
@@ -39,10 +44,12 @@ const Nav = () => {
           </li>
         </ul>
       </div>
-      <div className={styles.hamburger}>
-        <span></span>
-      </div>
-      <MobileNav />
+      <Hamburger onToggleMobileNav={setMobileNavVisible} mobileNavState={mobileNavVisible} ref={hamburgerRef} />
+      <MobileNav
+        onToggleMobileNav={setMobileNavVisible}
+        mobileNavState={mobileNavVisible}
+        hamburgerEle={hamburgerRef.current}
+      />
     </nav>
   );
 };
