@@ -3,35 +3,17 @@ import { useState } from 'react';
 // components
 import Button from '../Button';
 
-import API from '../../api';
-
 // style classes
 import styles from './index.module.scss';
 
 // redux
-import { useDispatch } from 'react-redux';
-import {
-  getShortenedLinkFailAction,
-  getShortenedLinkPendingAction,
-  getShortenedLinkSuccessAction,
-} from '../../store/actions';
+import { getShortenLink } from '../../store/actionCreators/getShortenLink';
 
 // hooks
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedDispatch } from '../../store';
 
-interface ShortenApiResponse {
-  ok: boolean;
-  result: ShortenApiResult;
-  error_code?: number;
-}
-
-interface ShortenApiResult {
-  share_link: string;
-  original_link: string;
-  full_short_link: string;
-}
-
-const ERROR_CODE_MAP: { [key: string]: string } = {
+export const ERROR_CODE_MAP: { [key: string]: string } = {
   '1': 'No url parameter set.',
   '2': 'This is not a valid URL.',
   '3': 'Rate limit exceeded. Wait a second and try again.',
@@ -45,11 +27,13 @@ const ERROR_CODE_MAP: { [key: string]: string } = {
 };
 
 const Form = () => {
+  console.log('[form-render]');
   const { errorFeedback, isError, isFetching } = useTypedSelector(
     (state) => state.links
   );
   const [enteredLink, setEnteredLink] = useState<string>('');
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const dispatch = useTypedDispatch();
 
   const inputLinkHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -58,31 +42,9 @@ const Form = () => {
     setEnteredLink(value);
   };
 
-  const submitFormHandler = async (event: React.FormEvent): Promise<void> => {
+  const submitFormHandler = (event: React.FormEvent): void => {
     event.preventDefault();
-
-    const queryParam = new URLSearchParams({
-      url: enteredLink,
-    });
-    const requestUrl = `${API.base_url}/shorten?${queryParam}`;
-
-    try {
-      dispatch(getShortenedLinkPendingAction());
-      const res = await fetch(requestUrl);
-      const { ok, result, error_code }: ShortenApiResponse = await res.json();
-
-      if (!ok) {
-        throw error_code;
-      } else {
-        const { share_link, original_link, full_short_link } = result;
-        const formatted = { share_link, original_link, full_short_link };
-        dispatch(getShortenedLinkSuccessAction(formatted));
-        setEnteredLink('');
-      }
-    } catch (errorCode: any) {
-      const errorFeedback = ERROR_CODE_MAP[errorCode];
-      dispatch(getShortenedLinkFailAction(errorFeedback));
-    }
+    dispatch(getShortenLink(enteredLink));
   };
 
   return (
