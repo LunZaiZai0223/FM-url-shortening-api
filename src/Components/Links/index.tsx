@@ -4,39 +4,47 @@ import Button from '../Button';
 // style classes
 import styles from './index.module.scss';
 
-const DUMMY_LINKS: { originalLink: string; shortenedLink: string; status: false }[] = [
-  {
-    originalLink: 'https://ithelp.ithome.com.tw/articles/10276227',
-    shortenedLink: 'https://ithelp.ithome.com.tw/articles/10276227',
-    status: false,
-  },
-  {
-    originalLink: 'https://ithelp.ithome.com.tw/articles/10276227',
-    shortenedLink: 'https://ithelp.ithome.com.tw/articles/10276227',
-    status: false,
-  },
-  {
-    originalLink: 'https://ithelp.ithome.com.tw/articles/10276227',
-    shortenedLink: 'https://ithelp.ithome.com.tw/articles/10276227',
-    status: false,
-  },
-];
+// hooks
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+
+// redux
+import { useDispatch } from 'react-redux';
+import { setCopiedStatusAction } from '../../store/actions';
 
 const Links = () => {
+  const { links } = useTypedSelector((state) => state.links);
+  const dispatch = useDispatch();
+
+  const setLinkItemCopiedStatusHandler = (index: number) => {
+    dispatch(setCopiedStatusAction(index));
+    navigator.clipboard.writeText(links[index].full_short_link);
+  };
+
   return (
     <section className={`${styles['link-container']}`}>
       <ul className={`${styles['link-list']}`}>
-        {DUMMY_LINKS.map((item, index) => {
-          const { shortenedLink, originalLink, status } = item;
+        {links.map((item, index) => {
+          const { original_link, full_short_link, copied_status } = item;
           return (
             <li className={`${styles['link-item']}`} key={index}>
               <span className={`${styles['original-link']}`}>
-                <a>{originalLink}</a>
+                <a href={original_link} target="_blank" rel="noreferrer">
+                  {original_link}
+                </a>
               </span>
               <span className={`${styles['shortened-link']}`}>
-                <a>{shortenedLink}</a>
+                <a href={full_short_link} target="_blank" rel="noreferrer">
+                  {full_short_link}
+                </a>
               </span>
-              <Button classes={`${styles.btn}`}>{!status ? 'Copy' : 'Copied'}</Button>
+              <Button
+                classes={`${styles.btn} ${
+                  copied_status ? styles['is-copied'] : ''
+                }`}
+                clickHandler={() => setLinkItemCopiedStatusHandler(index)}
+              >
+                {!copied_status ? 'Copy' : 'Copied'}
+              </Button>
             </li>
           );
         })}
