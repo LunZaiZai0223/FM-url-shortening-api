@@ -49,7 +49,6 @@ const ERROR_CODE_MAP: { [key: string]: string } = {
 };
 
 const Form = () => {
-  console.log('[form]');
   const { errorFeedback, isError, isFetching, links } = useTypedSelector(
     (state) => state.links
   );
