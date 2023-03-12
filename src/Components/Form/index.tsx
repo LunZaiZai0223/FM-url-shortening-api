@@ -19,6 +19,9 @@ import {
 // hooks
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
+// utils
+import { setLocalStorage } from '../../utils/localStorageHelpers';
+
 interface ShortenApiResponse {
   ok: boolean;
   result: ShortenApiResult;
@@ -42,10 +45,12 @@ const ERROR_CODE_MAP: { [key: string]: string } = {
   '8': 'Invalid code submitted.',
   '9': 'Missing required parameters.',
   '10': 'Trying to shorten a disallowed Link.',
+  '11': 'The url is shortened already.',
 };
 
 const Form = () => {
-  const { errorFeedback, isError, isFetching } = useTypedSelector(
+  console.log('[form]');
+  const { errorFeedback, isError, isFetching, links } = useTypedSelector(
     (state) => state.links
   );
   const [enteredLink, setEnteredLink] = useState<string>('');
@@ -66,6 +71,17 @@ const Form = () => {
     });
     const requestUrl = `${API.base_url}/shorten?${queryParam}`;
 
+    const isUrlAlreadyExisted = (): boolean => {
+      const result = links.find((item) => item.original_link === enteredLink);
+      console.log(result);
+      return !!result;
+    };
+
+    if (isUrlAlreadyExisted()) {
+      dispatch(getShortenedLinkFailAction(ERROR_CODE_MAP['11']));
+      return;
+    }
+
     try {
       dispatch(getShortenedLinkPendingAction());
       const res = await fetch(requestUrl);
@@ -78,6 +94,7 @@ const Form = () => {
         const formatted = { share_link, original_link, full_short_link };
         dispatch(getShortenedLinkSuccessAction(formatted));
         setEnteredLink('');
+        setLocalStorage([...links, formatted]);
       }
     } catch (errorCode: any) {
       const errorFeedback = ERROR_CODE_MAP[errorCode];

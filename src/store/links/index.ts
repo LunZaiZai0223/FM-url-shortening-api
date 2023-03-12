@@ -68,6 +68,12 @@ const linksReducer = (
         }),
       };
 
+    case ActionTypes.SET_DATA_FROM_LOCAL_STORAGE:
+      return {
+        ...state,
+        links: payload,
+      };
+
     default:
       return state;
   }

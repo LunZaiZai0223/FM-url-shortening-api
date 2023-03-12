@@ -1,4 +1,5 @@
 import Action, { ActionTypes } from '../actionTypes';
+import { Link } from '../links';
 
 /* 
 action 只是一個 { type: 'id', payload: {...data passed to reducer } } 的物件，這些函式就是負責建立有這兩個 properties 的 object
@@ -22,4 +23,8 @@ export const getShortenedLinkFailAction = (errorFeedback: string): Action => {
 
 export const setCopiedStatusAction = (targetIndex: number): Action => {
   return { type: ActionTypes.SET_COPIED_STATUS, payload: targetIndex };
+};
+
+export const setDataFromLocalStorage = (data: Link[]): Action => {
+  return { type: ActionTypes.SET_DATA_FROM_LOCAL_STORAGE, payload: data };
 };
